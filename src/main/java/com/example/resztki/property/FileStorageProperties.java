@@ -3,7 +3,6 @@ package com.example.resztki.property;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@NoArgsConstructor
 @ConfigurationProperties(prefix = "file")
 public class FileStorageProperties {
     private String uploadDir;
@@ -16,4 +15,3 @@ public class FileStorageProperties {
         this.uploadDir = uploadDir;
     }
 }
-// defininf application properties for files

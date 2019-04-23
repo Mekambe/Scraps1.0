@@ -1,10 +1,14 @@
 package com.example.resztki.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.persistence.*;
+
+
+@Entity
+@ToString
+@NoArgsConstructor
 public class ImageDomain {
 
     @Id
@@ -12,7 +16,7 @@ public class ImageDomain {
     private int idImage;
 
     @OneToOne(mappedBy = "image")
-            CustomerDomain customerDomain;
+    CustomerDomain customerDomain;
 
     String image;
 

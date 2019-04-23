@@ -22,16 +22,6 @@ public class FileStorageService {
 
     private final Path fileStorageLocation;
 
-
-    FileStorageProperties fileStorageProperties;
-
-
-    public FileStorageService(Path fileStorageLocation, FileStorageProperties fileStorageProperties) {
-        this.fileStorageLocation = fileStorageLocation;
-        this.fileStorageProperties = fileStorageProperties;
-    }
-
-
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
@@ -64,18 +54,17 @@ public class FileStorageService {
         }
     }
 
-    public Resource loadFileAsResource(int fileNumber) {
+    public Resource loadFileAsResource(String fileName) {
         try {
-            Path filePath = Paths.get(questionsDomainRepository.findByIdQuestions(fileNumber).getImage().getImage());
-            Path filePath = Paths.get(custo  .findByIdQuestions(fileNumber).getImage().getImage());
+            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
             if(resource.exists()) {
                 return resource;
             } else {
-                throw new MyFileNotFoundException("File not found " + fileNumber);
+                throw new MyFileNotFoundException("File not found " + fileName);
             }
         } catch (MalformedURLException ex) {
-            throw new MyFileNotFoundException("File not found " + fileNumber, ex);
+            throw new MyFileNotFoundException("File not found " + fileName, ex);
         }
     }
 }

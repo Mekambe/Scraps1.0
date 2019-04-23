@@ -65,7 +65,8 @@ import java.util.stream.Collectors;
         }
 
 
-        private UploadFileResponse uploadFile(MultipartFile file) {
+        @PostMapping("/uploadFile")
+        public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
             String fileName = fileStorageService.storeFile(file);
 
             String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -73,18 +74,14 @@ import java.util.stream.Collectors;
                     .path(fileName)
                     .toUriString();
 
-            String pathUri = ""; //adres zapisanego obrazak na dysku
-
             return new UploadFileResponse(fileName, fileDownloadUri,
                     file.getContentType(), file.getSize());
-// dodac do konstruktora: pathUri);
         }
+
 
         @PostMapping("/uploadMultipleFiles")
         public void uploadMultipleFiles(@RequestParam("files") MultipartFile[] files,
-                                        @RequestParam("id") int id,
-                                        @RequestParam("questionId") int questionId,
-                                        @RequestParam("link") String link) {
+                                        @RequestParam("id") int id) {
             List<UploadFileResponse> collect = Arrays.stream(files)
                     .map(this::uploadFile)
                     .collect(Collectors.toList());
@@ -102,11 +99,10 @@ import java.util.stream.Collectors;
 
         }
 
-        @GetMapping("/downloadFile/{imageID}")
-
-        public ResponseEntity<Resource> downloadFile(@PathVariable int imageID, HttpServletRequest request) {
+        @GetMapping("/downloadFile/{fileName:.+}")
+        public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
             // Load file as Resource
-            Resource resource = fileStorageService.loadFileAsResource(imageID);
+            Resource resource = fileStorageService.loadFileAsResource(fileName);
 
             // Try to determine file's content type
             String contentType = null;
