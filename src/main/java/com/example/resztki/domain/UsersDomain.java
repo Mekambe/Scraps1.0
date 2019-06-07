@@ -14,7 +14,7 @@ public class UsersDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private Integer idUser;
 
     @OneToMany(mappedBy = "imageHandler")
     private List<DBFile> imageId = new ArrayList();
@@ -57,12 +57,28 @@ public class UsersDomain {
         this.companyAddress = companyAddress;
     }
 
-    public int getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
+    }
+
+    public List<PriceDomain> getPriceId() {
+        return priceId;
+    }
+
+    public void setPriceId(List<PriceDomain> priceId) {
+        this.priceId = priceId;
+    }
+
+    public String getOpenFrom() {
+        return openFrom;
+    }
+
+    public void setOpenFrom(String openFrom) {
+        this.openFrom = openFrom;
     }
 
     public List<DBFile> getImageId() {
