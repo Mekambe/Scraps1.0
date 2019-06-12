@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PriceRepository extends JpaRepository<PriceDomain, Integer> {
+
+    PriceDomain findByPoductInsideTheMenu (String productMenu);
 }

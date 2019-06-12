@@ -1,21 +1,6 @@
-package com.example.resztki.domain;
+package com.example.resztki.dto;
 
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-import javax.persistence.*;
-
-
-@NoArgsConstructor
-@Entity
-@ToString
-public class PriceDomain {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int priceid;
+public class MenuDto {
 
     String poductInsideTheMenu;
 
@@ -24,19 +9,7 @@ public class PriceDomain {
 
     Integer newSaledPriceOfTheProduct;
 
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "price")
-    UsersDomain priceHandler;
-
-    public int getPriceid() {
-        return priceid;
-    }
-
-    public void setPriceid(int priceid) {
-        this.priceid = priceid;
-    }
+    Integer customerID;
 
     public String getPoductInsideTheMenu() {
         return poductInsideTheMenu;
@@ -45,7 +18,6 @@ public class PriceDomain {
     public void setPoductInsideTheMenu(String poductInsideTheMenu) {
         this.poductInsideTheMenu = poductInsideTheMenu;
     }
-
 
     public Integer getRegularPriceOfTheProduct() {
         return regularPriceOfTheProduct;
@@ -63,12 +35,11 @@ public class PriceDomain {
         this.newSaledPriceOfTheProduct = newSaledPriceOfTheProduct;
     }
 
-    public UsersDomain getPriceHandler() {
-        return priceHandler;
+    public Integer getCustomerID() {
+        return customerID;
     }
 
-    public void setPriceHandler(UsersDomain priceHandler) {
-        this.priceHandler = priceHandler;
+    public void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
     }
 }
-

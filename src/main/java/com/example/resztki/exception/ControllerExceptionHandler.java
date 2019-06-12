@@ -12,14 +12,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice (basePackages = "com.example.resztki")
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = (UserExists.class))
-    public ResponseEntity<Object> handleError (Exception ex, WebRequest webRequest){
-        String bodyError = "This User Does not Exists";
-
-        return handleExceptionInternal(ex, bodyError, new HttpHeaders(), HttpStatus.NOT_FOUND, webRequest);
-
-
-    }
+//    @ExceptionHandler(value = (UserExists.class))
+//    public ResponseEntity<Object> handleError (Exception ex, WebRequest webRequest){
+//        String bodyError = "This User Does not Exists";
+//
+//        return handleExceptionInternal(ex, bodyError, new HttpHeaders(), HttpStatus.NOT_FOUND, webRequest);
+//
+//
+//    }
 
 
 }
