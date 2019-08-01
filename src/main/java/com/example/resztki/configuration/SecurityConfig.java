@@ -12,7 +12,7 @@ import org.springframework.web.cors.CorsConfiguration;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-@Test
+@Test 2
 
 
     @Autowired
